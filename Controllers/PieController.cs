@@ -1,4 +1,5 @@
 ﻿using BethanysPieShop.Models;
+using BethanysPieShop.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace BethanysPieShop.Controllers
 
         //private - özel
         //readonly - salt okunur
+
         private readonly IPieRepository _pieRepository; //1.bunlar sadece alandır, otomatik olarak başlatılmazlar,
         private readonly ICategoryRepository _categoryRepository;//bunu constructor (yapıcı) kullanarak yaparız
 
@@ -23,9 +25,15 @@ namespace BethanysPieShop.Controllers
             _categoryRepository = categoryRepository; //3.artık controllerdaki model sınıflarımıza erişim var
         }
 
-        public ViewResult List()
+        public ViewResult List()        
         {
-            return View(_pieRepository.AllPies);
+            //ViewBag.CurrentCategory = "Cheese cakes";
+
+            PiesListViewModel piesListViewModel = new PiesListViewModel();
+            piesListViewModel.Pies = _pieRepository.AllPies;
+
+            piesListViewModel.CurrentCategory = "Cheese cakes";
+            return View(piesListViewModel);
         }
 
     }
