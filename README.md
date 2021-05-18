@@ -7,4 +7,4 @@ ASP.NET Core MVC ile Web Application Uygulaması
 		--> add-migration InitialMigration
 	* database güncelleme
 		--> update-database
-    Not: Bu işlemler için "Microsoft.EntityFrameworkCore.Tools" kütüphanesi gerekli
+    * Not: Bu işlemler için "Microsoft.EntityFrameworkCore.Tools" kütüphanesi gerekli
