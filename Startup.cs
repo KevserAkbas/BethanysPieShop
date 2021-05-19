@@ -32,7 +32,9 @@ namespace BethanysPieShop
             services.AddScoped<IPieRepository, PieRepository>();
             //services.AddSingleton
             //services.AddTransient
-
+            services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp)); //bu önemli, çünkü kullanýcý sisteme geldiðinde GetCart yöntemini kulanarak kapsamlý bir alýþveriþ sepeti oluþturulacak
+            services.AddHttpContextAccessor();
+            services.AddSession();
             services.AddControllersWithViews(); //MVC ile çalýþmak için destek saðlayacak
         }
 
@@ -45,6 +47,8 @@ namespace BethanysPieShop
             }
             app.UseHttpsRedirection(); //HTTP isteklerini HTTPS'ye yönlendiren middleware
             app.UseStaticFiles(); //Resimler, JavaScript Dosyalarý, CSS vb. statik dosyalarý sunmak için
+            app.UseSession();
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
